@@ -1,0 +1,102 @@
+import random
+
+class Deck:
+    
+    def __init__(self): #(Attribute)
+        self.deck = []
+        cardsuits=["\u2665","\u2663","\u2666","\u2660"]
+        cardvalue=["2","3","4","5","6","7","8","9","10","J","K","Q","A"]
+        for i in range(len(cardvalue)):
+            for s in range(len(cardsuits)):
+                c = (cardvalue[i],cardsuits[s])               
+                self.deck.append(c)
+        random.shuffle(self.deck)
+        
+        #print(format(self.deck))
+        #print(len(self.deck))
+
+
+class Player:
+
+    def __init__(self):
+        self.hand = []
+        #self.for_summarry = []
+        self.for_sum = []
+        
+    def start(self):    
+        self.deck = Deck().deck
+        for i in range(2):
+            
+            start_card = self.deck[i]
+            self.hand.append(start_card)
+            self.deck.remove(start_card)
+        print(self.hand)
+        x = 0
+        while x ==0:
+            p = input("Do you want to draw a card Yes or No : ")
+            if p == "Yes":
+                self.draw()
+            if p == "No":
+                self.check()
+                x = 1
+    
+    def draw(self):
+        
+        k = (self.deck[1])
+        self.hand.append(k)
+        self.deck.remove(k)
+        
+        print((self.hand))
+        #print(len(self.deck))
+
+    def check(self):
+        #self.for_sum = []
+        #self.for_summarry = []
+        for i in range(len(self.hand)):
+            x = (self.hand[i][0])
+            if x == "K" :
+                x = 10
+            if x == "J":
+                x = 10
+            if x == "Q":
+                x = 10
+            if x == "A":
+                k = int(input("what do you want for A : "))
+                if k == 1:
+                    x = 1
+                if k == 11:
+                    x = 11
+            else:
+                x = int(x)
+                
+
+            
+            #print(x)
+            #print(type(x))
+            self.for_sum.append(x)
+        j = (sum(self.for_sum))
+        print(j)
+        #self.for_summarry.append(j)
+        #print(self.for_summarry)
+        if j > 21:
+            print("you died")
+        if j ==21:
+            print("you win")
+        if j < 21:
+            print("You can do better than this")
+
+
+class Game:
+    def __init__(self):
+        player_no= int(input("How many player: "))
+        for i in range(player_no):
+            Player().start()
+            
+            if i == player_no-1:
+                
+                print("thanks for playing")
+                exit()
+   
+
+
+Game()
