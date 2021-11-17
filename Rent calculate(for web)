@@ -1,0 +1,38 @@
+class Roombill:
+    def __init__(self,total,period): 
+        self.total = total
+        self.period = period
+        
+
+class Person:
+    def __init__(self,days,name):
+        self.days = days
+        self.name = name
+        
+
+    def pay(self): #rtotal mean Rent total
+        rent_per_days = (room.total/room.period) 
+        money = rent_per_days*self.days
+        return money
+        
+
+
+total = int(input("Enter the total amount: "))
+
+period = int(input("How long have you all rented: "))
+
+room = Roombill(total,period) # instantiate object in Roombill
+
+name1 = input("Name: ")
+day1 = int(input(f"How many day did {name1} stay: "))
+
+name2 = input("Name: ")
+day2 = int(input(f"How many day did {name2} stay: "))
+
+person1 = Person(day1,name1) # instantiate object in Person
+person2 = Person(day2,name2) # instantiate object in person
+
+
+print(f"{person1.name} should pay {person1.pay()}")
+
+print(f"{person2.name} should pay {person2.pay()}")
